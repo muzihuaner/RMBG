@@ -1,4 +1,4 @@
-import { AutoProcessor, RawImage, AutoModel } from 'https://cdn.jsdmirror.com/npm/@xenova/transformers';
+import { AutoProcessor, RawImage, AutoModel } from 'https://jsd.onmicrosoft.cn/npm/@xenova/transformers';
 
 const status = document.getElementById('status');
 const fileSelect = document.getElementById('file-select');
