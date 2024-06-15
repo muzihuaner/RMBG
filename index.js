@@ -15,7 +15,7 @@ const processor = await AutoProcessor.from_pretrained('Xenova/modnet-onnx');
 
 status.textContent = 'Ready';
 // Load image from URL
-const url = 'https://images.pexels.com/photos/5965592/pexels-photo-5965592.jpeg?auto=compress&cs=tinysrgb&w=1024';
+const url = 'demo.webp';
 function useRemoteImage(url) {
   const image = document.createElement('img');
   image.crossOrigin = "anonymous";
