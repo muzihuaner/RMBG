@@ -1,35 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/normalize/8.0.1/normalize.css">
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" href="style.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>快点免费在线抠图-消除图片背景 </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="快点免费在线抠图使用AI技术自动去除图片背景，抠图并创建具有透明背景的 png 图片。">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>快点在线抠图_图片去除背景</title>
+  <meta name="keywords" content="快点在线抠图，利用AI轻松实现一键抠图，只需上传图片，无需其他操作，即可100%自动去除图片背景。">
+  <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.2/css/all.css" rel="stylesheet">
+ 
+  <script type="module" crossorigin src="assets/script.js"></script>
+  <link rel="stylesheet" crossorigin href="assets/style.css">
+  
 </head>
-
 <body>
-    <main class="container">
-        <setcion class="flex justify-center items-center text-center">
-            <H1>快点免费在线抠图</H1>
-            <H2>AI 一键去除背景</H2>
-        </setcion>
-        <label class="custom-file-select">
-            <input id="file-select" type="file" accept="image/*" />
-            上传图片
+  <div class="bg-white">
+  <header class="absolute inset-x-0 top-0 z-50">
+    
+    <!-- Mobile menu, show/hide based on menu open state. -->
+  </header>
+  <div class="relative isolate px-6 pt-14 lg:px-8">
+    <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
+      <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+    </div>
+    <div class="w-full flex flex-col py-16 sm:py-48 lg:py-16">
+      <div class="text-center mb-6">
+       
+        <h1 class="text-xl font-bold tracking-tight text-gray-900 sm:text-6xl">快点在线抠图.</h1>
+      </div>
+      <div class="relative container-wrap">
+      <div id="container" class="mx-auto flex flex-col items-center justify-center">
+        <label id="upload-button" for="upload" class="flex flex-col items-center justify-center">
+          <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+          </svg>
+          <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">上传图片</span></p>
+          <label id="example">举个栗子🌰</label>
         </label>
-        <p id="status"></p>
-        <div class="wrap">
-            <div id="image-container" class="left-column"></div>
-            <div id="output-container" class="right-column"></div>
+        <input id="upload" type="file" accept="image/*" />
+      </div>
+      <div id="status-wrap" class="absolute max-w-5xl top-0 right-0 bottom-0 left-0 bg-black bg-opacity-50 rounded-md">
+        <!-- <div class="absolute w-1/2 top-2/4 left-1/2 -translate-y-2/4 -translate-x-2/4 rounded-md bg-neutral-200 dark:bg-neutral-600">
+          <div
+            id="progressBar"
+            class="bg-primary p-0.5 text-center text-xs font-medium leading-none text-white rounded-md"
+            style="width: 25%">
+            25%
+          </div>
+        </div> -->
+        <label id="status" class="absolute top-2/4 left-1/2 text-x tracking-tight text-white -translate-y-2/4 -translate-x-2/4"></label>
+      </div>
+      <!-- 添加新的图片对比结构 -->
+      <section id="image-slider"  class="image-comparison border-4 border-secondary rounded-2xl md:rounded-4xl" data-component="image-comparison-slider" style="display: none;">
+        <div class="checkerboard w-full h-full absolute top-0 left-0"></div>
+        <div class="image-comparison__slider-wrapper">
+          <label for="image-comparison-range" class="image-comparison__label">Move image comparison slider</label>
+          <input type="range" min="0" max="100" value="50" class="image-comparison__range" id="image-compare-range" data-image-comparison-range="">
+      
+          <div class="image-comparison__image-wrapper  image-comparison__image-wrapper--overlay" data-image-comparison-overlay="">
+            <figure class="image-comparison__figure image-comparison__figure--overlay">
+              <picture class="image-comparison__picture">
+                <img id="original-image" src="" alt="Mojave desert in the sun" class="image-comparison__image">
+              </picture>
+      
+              <figcaption class="image-comparison__caption image-comparison__caption--before">
+                <span class="image-comparison__caption-body">Before</span>
+              </figcaption>
+            </figure>
+          </div>
+      
+          <div class="image-comparison__slider" data-image-comparison-slider="">
+            <span class="image-comparison__thumb" data-image-comparison-thumb="">
+              <svg class="image-comparison__thumb-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="10" viewBox="0 0 18 10" fill="currentColor">
+                <path class="image-comparison__thumb-icon--left" d="M12.121 4.703V.488c0-.302.384-.454.609-.24l4.42 4.214a.33.33 0 0 1 0 .481l-4.42 4.214c-.225.215-.609.063-.609-.24V4.703z"></path>
+                <path class="image-comparison__thumb-icon--right" d="M5.879 4.703V.488c0-.302-.384-.454-.609-.24L.85 4.462a.33.33 0 0 0 0 .481l4.42 4.214c.225.215.609.063.609-.24V4.703z"></path>
+              </svg>
+            </span>
+          </div>
+      
+          <div class="image-comparison__image-wrapper">
+            <figure class="image-comparison__figure">
+              <picture class="image-comparison__picture">
+                <img id="modified-image" src="" alt="Mojave desert in the dark" class="image-comparison__image">
+              </picture>
+      
+              <figcaption class="image-comparison__caption image-comparison__caption--after">
+                <span class="image-comparison__caption-body">After</span>
+              </figcaption>
+            </figure>
+          </div>
         </div>
+      </section>
+      <div class="block-wrap">
+        <a href="javascript:void(0)" id="downloadBtn" class="w-36 text-gray-900 bg-gray-100 hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 me-2 mb-2"
+        >
+        <span class="pr-[10px] text-[#626890]">
+          <svg class="w-3 h-3 text-[#626890] dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 18">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 1v11m0 0 4-4m-4 4L4 8m11 4v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3"/>
+        </svg>
+        </span>
+        下载
+      </a>
+      <a href="javascript:void(0)" class="text-white bg-[#2557D6] hover:bg-[#2557D6]/90 focus:ring-4 focus:ring-[#2557D6]/50 focus:outline-none font-medium rounded-lg text-sm px-5 text-center inline-flex items-center dark:focus:ring-[#2557D6]/50 me-2 mb-2">
+        <label for="uploadAgain" class="block h-10  flex items-center">
+        <svg t="1708774644669" class="w-7 h-3.5 text-white dark:text-white pr-[10px]" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2713" width="200" height="200"><path d="M896 629.333333c-17.066667 0-32 14.933333-32 32v170.666667c0 6.4-4.266667 10.666667-10.666667 10.666667H170.666667c-6.4 0-10.666667-4.266667-10.666667-10.666667v-170.666667c0-17.066667-14.933333-32-32-32s-32 14.933333-32 32v170.666667c0 40.533333 34.133333 74.666667 74.666667 74.666667h682.666666c40.533333 0 74.666667-34.133333 74.666667-74.666667v-170.666667c0-17.066667-14.933333-32-32-32z" fill="#fff" p-id="2714"></path><path d="M322.133333 407.466667l157.866667-157.866667V704c0 17.066667 14.933333 32 32 32s32-14.933333 32-32V247.466667l157.866667 157.866666c6.4 6.4 14.933333 8.533333 23.466666 8.533334s17.066667-2.133333 23.466667-8.533334c12.8-12.8 12.8-32 0-44.8l-213.333333-213.333333c-12.8-12.8-32-12.8-44.8 0l-213.333334 213.333333c-12.8 12.8-12.8 32 0 44.8 10.666667 12.8 32 12.8 44.8 2.133334z" fill="#fff" p-id="2715"></path></svg>
+        上传图片
+        </label>
+        <input id="uploadAgain" type="file" accept="image/*" style="display: none;"/>
+      </a>
+       </label>
+      </div>
+      </div>
+    </div>
+    <section id="about" class="mx-auto max-w-5xl bg-white dark:bg-gray-900">
+      <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-8 lg:px-6">
+          <div class="max-w-screen-lg text-gray-500 sm:text-lg dark:text-gray-400">
+              <h2 class="mb-4 text-4xl tracking-tight font-bold text-gray-900 dark:text-white">关于 快点在线抠图</h2>
+              <p class="mb-4 font-light">本站服务凭借 <b>RMBG V1.4</b> 先进人工智能算法，可以为您省去大量的时间，提高您的工作效率！</p>
+              <p class="mb-4 font-medium">最重要的是，我们的服务完全免费且在本地运行。</p>
+              <!-- <a href="#" class="inline-flex items-center font-medium text-primary-600 hover:text-primary-800 dark:text-primary-500 dark:hover:text-primary-700">
+                  Learn more
+                  <svg class="ml-1 w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+              </a> -->
+          </div>
+      </div>
+    </section>
+   
+  </div>
+  <!-- TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com --> 
+<!--Footer container-->
+<footer
+class="mt-16 pt-6 pb-2 flex flex-col items-center bg-black text-sm text-gray-400 border-t">
 
-        <div class="footer">长按图片即可保存 <br><br> 模型来自<a href="https://huggingface.co/Xenova/modnet">modnet</a></div>
-    </main>
-    <script src="./index.js" type="module"></script>
+<!--Copyright section-->
+<div
+  class="text-gray-400">
+  © 2024 
+  <a
+    class="text-gray-400 dark:text-neutral-400"
+    href="https://rmbg.quickso.cn"
+    >快点在线抠图</a
+  >
+</div>
+</footer>
+</div>
 </body>
 
 </html>
