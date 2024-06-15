@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>快点免费在线抠图-消除图片背景 </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="快点免费在线抠图使用AI技术自动去除图片背景，抠图并创建具有透明背景的 png 图片。">
+</head>
+
+<body>
+    <main class="container">
+        <setcion class="flex justify-center items-center text-center">
+            <H1>快点免费在线抠图</H1>
+            <H2>AI 一键去除背景</H2>
+        </setcion>
+        <label class="custom-file-select">
+            <input id="file-select" type="file" accept="image/*" />
+            上传图片
+        </label>
+        <p id="status"></p>
+        <div class="wrap">
+            <div id="image-container" class="left-column"></div>
+            <div id="output-container" class="right-column"></div>
+        </div>
+
+        <div class="footer">长按图片即可保存 <br><br> 模型来自<a href="https://huggingface.co/Xenova/modnet">modnet</a></div>
+    </main>
+    <script src="./index.js" type="module"></script>
+</body>
+
+</html>
