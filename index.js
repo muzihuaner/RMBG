@@ -1,5 +1,5 @@
-import { AutoProcessor, RawImage, AutoModel } from 'https://jsd.onmicrosoft.cn/npm/@xenova/transformers';
-
+import { AutoProcessor, RawImage, AutoModel, env } from 'https://jsd.onmicrosoft.cn/npm/@xenova/transformers';
+env.allowLocalModels = false;
 const status = document.getElementById('status');
 const fileSelect = document.getElementById('file-select');
 const imageContainer = document.getElementById('image-container');
@@ -116,7 +116,7 @@ async function start(source) {
       outputContainer.appendChild(img);
       endTime = new Date();
       const diff = (endTime - startTime) / 1000
-      setTimeout(() => status.textContent = '已完成，用时: ' + diff + 's', 0)    
+      setTimeout(() => status.textContent = '已完成，用时: ' + diff + 's', 0)
     })
     .catch(function (error) {
       // 捕获和处理 blob 创建过程中可能出现的错误
